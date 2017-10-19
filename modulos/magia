@@ -1,0 +1,14 @@
+ Conceituos
+    A conjuração de magia pode ser feita através de uma única perícia ou várias cada uma representando uma área
+    Todos os serem possuem uma quantidade de energia mágica cuja a quantidade depende de vários fatores
+    A energia mágica é utilizada como uma defesa inconsciente e automática para proteger o personagem 
+    Dano em um único alvo: cada ponto de mana gasto gera uma quantidade de dano baseado em uma função(logarítmica, linear, exponencial, etc.) baseado na rolagem  do conjurador
+    redução de dano: cada ponto de mana gasto gera uma quantidade de redução de dano baseado em uma função(logarítmica, linear, exponencial, etc.) baseado na rolagem  do conjurador
+    ataque em área: 
+    gasto de mana: a quantidade de mana que pode ser gasta de uma vez é baseada na habilidade do conjurador
+    
+ programa 
+   formula de dano magico
+   formula de defesa mágica 
+   formulas para ataque em area
+   visualização de como cada fórmula irar funcionar
