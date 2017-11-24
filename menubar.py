@@ -1,9 +1,10 @@
 #!/usr/bin/env pytho
 import gi
+import csv
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-		
-
+import json
+class menubar:
 	def filemenu(self):
 		filemenu = Gtk.Menu()
 		filem = Gtk.MenuItem("Arquivo")
@@ -68,14 +69,51 @@ from gi.repository import Gtk
 
 
 	def function_new(self,a):
-		print(self.campos)
+		print(self.fields)
 		
 	def function_openfile (self,a):
-		pass
+		save_dialog = Gtk.FileChooserDialog(title="Save", action=Gtk.FileChooserAction.SAVE,   buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
 		
-	def function_save(self,a):
-		pass
+		response = save_dialog.run()
 		
+		
+	def function_save(self,a=None):
+		save_dialog = Gtk.FileChooserDialog(title="Save", action=Gtk.FileChooserAction.SAVE,   buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+		
+		response = save_dialog.run()
+		
+		if response == Gtk.ResponseType.OK:
+			save_dict = {}
+			for i in self.fields.keys():
+				if self.fields[i]["type"] == "number":
+					save_dict[i] = {}
+					save_dict[i]["type"] = "number"
+					save_dict[i]["width"] = self.fields[i]["entry"].get_width_chars()
+					save_dict[i]["height"] = self.fields[i]["entry"].get_size_request()[1]
+					save_dict[i]["position_x"] = self.fields[i]["position_x"]
+					save_dict[i]["position_y"] = self.fields[i]["position_y"]
+					save_dict[i]["label"] = self.fields[i]["label"].get_text()
+					save_dict[i]["loc label"] = self.fields[i]["loc label"]
+					save_dict[i]["min"] = self.fields[i]["min"]
+					save_dict[i]["max"] = self.fields[i]["max"]
+					save_dict[i]["negative"] = self.fields[i]["negative"] 
+					save_dict[i]["float"] = self.fields[i]["float"]
+					save_dict[i]["font"] = self.fields[i]["font"]
+			print()
+			print()
+			print(save_dict)
+			file_save = open(save_dialog.get_filename()+".pym", "w")
+			file_save.write(json.dumps(save_dict))
+			file_save.close()
+
+			save_dialog.destroy()
+		elif response == Gtk.ResponseType.CANCEL:
+			save_dialog.destroy()
+
+		
+	
 	def function_saveas(self,a):
 		pass
 		
